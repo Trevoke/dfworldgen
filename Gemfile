@@ -26,6 +26,10 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+group :test do
+  gem 'test-unit'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
