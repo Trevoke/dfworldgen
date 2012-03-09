@@ -1,6 +1,6 @@
-class CreateSeeds < ActiveRecord::Migration
+class CreateParameterSets < ActiveRecord::Migration
   def change
-    create_table :seeds do |t|
+    create_table :parameter_sets do |t|
       t.string :name
       t.text :description
       t.text :brackets
