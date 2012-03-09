@@ -1,4 +1,6 @@
 Dfworldgen::Application.routes.draw do
+
+  root :to => "parameter_sets#index"
   resources :parameter_sets
 
   # The priority is based upon order of creation:
