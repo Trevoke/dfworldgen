@@ -15,3 +15,5 @@
 /tmp
 
 .idea/*
+
+config/database.yml # nice try!
