@@ -1,5 +1,7 @@
 Dfworldgen::Application.routes.draw do
 
+  devise_for :users
+
   root :to => "parameter_sets#index"
   resources :parameter_sets
 

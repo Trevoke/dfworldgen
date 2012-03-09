@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 gem 'jquery-rails'
+gem 'acts_as_votable' # https://github.com/ryanto/acts_as_votable
+gem 'devise' # https://github.com/plataformatec/devise
 
 group :production do
   gem 'pg'

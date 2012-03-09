@@ -1,4 +1,6 @@
 class ParameterSetsController < ApplicationController
+
+  before_filter :authenticate_user!, :only => [:new, :edit]
   # GET /seeds
   # GET /seeds.json
   def index
