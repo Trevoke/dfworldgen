@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ParameterSetsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @parameter_set = parameter_sets(:one)
   end
@@ -11,7 +13,10 @@ class ParameterSetsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:parameter_sets)
   end
 
-  test "should get new" do
+  test "should get new if user is logged in" do
+    user = users(:one)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
     get :new
     assert_response :success
   end
@@ -29,7 +34,10 @@ class ParameterSetsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit if user is logged in" do
+    user = users(:one)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
     get :edit, id: @parameter_set
     assert_response :success
   end
