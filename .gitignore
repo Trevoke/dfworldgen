@@ -16,6 +16,6 @@
 
 .idea/*
 
-config/database.yml # nice try!
+/config/database.yml # nice try!
 
 *.swp # Vim temp files, too!

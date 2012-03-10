@@ -25,6 +25,7 @@ end
 
 group :development do
   gem 'heroku'
+  gem 'capistrano'
 end
 
 group :development, :test do
