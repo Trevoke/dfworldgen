@@ -41,7 +41,10 @@ class ParameterSetsControllerTest < ActionController::TestCase
 
   test "should be able to edit your own param sets" do
     sign_in_user
-    get :edit, id: @parameter_set
+    mine = ParameterSet.create! :brackets => "ohnoes", :description => "fake",
+                                :name => "ohno", :user_id => @user.id
+
+    get :edit, id: mine
     assert_response :success
   end
 
@@ -53,7 +56,6 @@ class ParameterSetsControllerTest < ActionController::TestCase
     get :edit, id: not_mine
     assert_redirected_to parameter_set_path(assigns(:parameter_set))
     assert_match "You're not allowed to edit this!", flash[:alert]
-
   end
 
   test "should update parameter set" do
