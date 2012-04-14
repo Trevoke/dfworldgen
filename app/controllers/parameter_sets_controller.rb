@@ -31,6 +31,10 @@ class ParameterSetsController < ApplicationController
 
   def edit
     @parameter_set = ParameterSet.find(params[:id])
+    if @parameter_set.user_id != current_user.id
+      flash[:alert] = "You're not allowed to edit this!"
+      redirect_to @parameter_set
+    end
   end
 
   def create
