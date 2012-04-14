@@ -1,8 +1,7 @@
 class ParameterSetsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :edit]
-  # GET /seeds
-  # GET /seeds.json
+
   def index
     @parameter_sets = ParameterSet.all
 
@@ -12,8 +11,6 @@ class ParameterSetsController < ApplicationController
     end
   end
 
-  # GET /seeds/1
-  # GET /seeds/1.json
   def show
     @parameter_set = ParameterSet.find(params[:id])
 
@@ -23,8 +20,6 @@ class ParameterSetsController < ApplicationController
     end
   end
 
-  # GET /seeds/new
-  # GET /seeds/new.json
   def new
     @parameter_set = ParameterSet.new
 
@@ -34,13 +29,10 @@ class ParameterSetsController < ApplicationController
     end
   end
 
-  # GET /seeds/1/edit
   def edit
     @parameter_set = ParameterSet.find(params[:id])
   end
 
-  # POST /seeds
-  # POST /seeds.json
   def create
     @parameter_set = ParameterSet.new(params[:parameter_set])
 
@@ -55,8 +47,6 @@ class ParameterSetsController < ApplicationController
     end
   end
 
-  # PUT /seeds/1
-  # PUT /seeds/1.json
   def update
     @parameter_set = ParameterSet.find(params[:id])
 
@@ -71,8 +61,6 @@ class ParameterSetsController < ApplicationController
     end
   end
 
-  # DELETE /seeds/1
-  # DELETE /seeds/1.json
   def destroy
     @parameter_set = ParameterSet.find(params[:id])
     @parameter_set.destroy

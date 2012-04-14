@@ -1,0 +1,15 @@
+#notice= notice
+
+%p
+  %b Name:
+  = @parameter_set.name
+%p
+  %b Description:
+  = @parameter_set.description
+%p
+  %b Brackets:
+  = @parameter_set.brackets
+
+= link_to 'Edit', edit_parameter_set_path(@parameter_set)
+|
+= link_to 'Back', parameter_sets_path

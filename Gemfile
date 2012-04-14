@@ -1,9 +1,13 @@
-source 'https://rubygems.org'
+source :rubygems
 
 gem 'rails', '3.2.1'
 gem 'jquery-rails'
 gem 'acts_as_votable' # https://github.com/ryanto/acts_as_votable
 gem 'devise' # https://github.com/plataformatec/devise
+gem 'haml'
+gem 'rails-asset-jqueryui', '~> 0.0.3'
+gem 'bootstrap-sass', '~> 2.0.1'
+
 
 group :production do
   gem 'pg'
@@ -35,15 +39,3 @@ end
 group :test do
   gem 'test-unit'
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
