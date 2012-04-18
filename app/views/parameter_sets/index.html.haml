@@ -9,8 +9,8 @@
 
   - @parameter_sets.each do |parameter_set|
     %tr
-      %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), remote: true unless disable_vote?(parameter_set)
-      %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), remote: true unless disable_vote?(parameter_set)
+      %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), method: 'put' # unless disable_vote?(parameter_set)
+      %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), method: 'put' #unless disable_vote?(parameter_set)
       %td= link_to parameter_set.name, parameter_set
       %td= parameter_set.description
 
