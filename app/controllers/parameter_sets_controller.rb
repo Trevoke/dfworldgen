@@ -1,32 +1,20 @@
 class ParameterSetsController < ApplicationController
-
-  before_filter :authenticate_user!, :only => [:new, :edit]
+  before_filter :authenticate_user!, except: [:index, :show]
+  respond_to :html
 
   def index
     @parameter_sets = ParameterSet.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @parameter_sets }
-    end
+    respond_with @parameter_sets
   end
 
   def show
     @parameter_set = ParameterSet.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @parameter_set }
-    end
+    respond_with @parameter_set
   end
 
   def new
     @parameter_set = ParameterSet.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @parameter_set }
-    end
+    respond_with @parameter_set
   end
 
   def edit
@@ -40,28 +28,20 @@ class ParameterSetsController < ApplicationController
   def create
     @parameter_set = ParameterSet.new(params[:parameter_set])
 
-    respond_to do |format|
-      if @parameter_set.save
-        format.html { redirect_to @parameter_set, notice: 'Parameter Set was successfully created.' }
-        format.json { render json: @parameter_set, status: :created, location: @parameter_set }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @parameter_set.errors, status: :unprocessable_entity }
-      end
+    if @parameter_set.save
+      redirect_to @parameter_set, notice: 'Parameter Set was successfully created.'
+    else
+      render action: "new"
     end
   end
 
   def update
     @parameter_set = ParameterSet.find(params[:id])
 
-    respond_to do |format|
-      if @parameter_set.update_attributes(params[:parameter_set])
-        format.html { redirect_to @parameter_set, notice: 'Seed was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @parameter_set.errors, status: :unprocessable_entity }
-      end
+    if @parameter_set.update_attributes(params[:parameter_set])
+      redirect_to @parameter_set, notice: 'Seed was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
@@ -69,9 +49,18 @@ class ParameterSetsController < ApplicationController
     @parameter_set = ParameterSet.find(params[:id])
     @parameter_set.destroy
 
-    respond_to do |format|
-      format.html { redirect_to parameter_sets_url }
-      format.json { head :no_content }
-    end
+    redirect_to parameter_sets_url
+  end
+
+  def vote_up
+    pset = ParameterSet.find params[:id]
+    current_user.vote_for pset
+    render nothing: true
+  end
+
+  def vote_down
+    pset = ParameterSet.find params[:id]
+    current_user.vote_against pset
+    render nothing: true
   end
 end

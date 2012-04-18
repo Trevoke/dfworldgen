@@ -2,22 +2,17 @@
 
 %table
   %tr
+    %th
+    %th
     %th Name
     %th Description
-    %th Brackets
-    %th>
-    %th>
-    %th>
-
 
   - @parameter_sets.each do |parameter_set|
     %tr
-      %td= parameter_set.name
+      %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), remote: true unless disable_vote?(parameter_set)
+      %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), remote: true unless disable_vote?(parameter_set)
+      %td= link_to parameter_set.name, parameter_set
       %td= parameter_set.description
-      %td= parameter_set.brackets
-      %td= link_to 'Show', parameter_set
-      %td= link_to 'Edit', edit_parameter_set_path(parameter_set)
-      %td= link_to 'Destroy', parameter_set, confirm: 'Are you sure?', method: :delete
 
 %br
 
