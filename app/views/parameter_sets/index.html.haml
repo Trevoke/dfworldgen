@@ -1,19 +1,23 @@
 %h1 Listing parameter sets
 
-%table
-  %tr
-    %th
-    %th
-    %th Name
-    %th Description
-
-  - @parameter_sets.each do |parameter_set|
+%table.table.table-striped
+  %thead
     %tr
-      %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), method: 'put' # unless disable_vote?(parameter_set)
-      %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), method: 'put' #unless disable_vote?(parameter_set)
-      %td= link_to parameter_set.name, parameter_set
-      %td= parameter_set.description
+      %th
+      %th
+      %th Name
+      %th Description
+      %th Creator
+
+  %tbody
+    - @parameter_sets.each do |parameter_set|
+      %tr
+        %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), method: 'put' # unless disable_vote?(parameter_set)
+        %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), method: 'put' #unless disable_vote?(parameter_set)
+        %td= link_to parameter_set.name, parameter_set
+        %td= parameter_set.description
+        %td= parameter_set.user.email
 
 %br
 
-= link_to 'New Parameter Set', new_parameter_set_path
+.btn.btn-primary= link_to t('.new', default: t('helpers.links.new')), new_parameter_set_path
