@@ -10,7 +10,7 @@ This set was created by #{@parameter_set.user.email}
   = @parameter_set.description
 %p
   %b Brackets:
-  = @parameter_set.brackets
+  = simple_format @parameter_set.brackets
 
 .form-actions
   .btn= link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path
