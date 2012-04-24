@@ -13,6 +13,6 @@ This set was created by #{@parameter_set.user.email}
   = simple_format @parameter_set.brackets
 
 .form-actions
-  .btn= link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path
-  .btn= link_to t('.edit', :default => t("helpers.links.edit")), edit_parameter_set_path(@parameter_set)
-  .btn.btn-danger= link_to t('.destroy', :default => t("helpers.links.destroy")), parameter_set_path(@parameter_set), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))
+  = link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path, class: 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_parameter_set_path(@parameter_set), class: 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), parameter_set_path(@parameter_set), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), class: 'btn btn-danger'

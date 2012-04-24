@@ -10,7 +10,7 @@
 
   %div
     = f.label :password
-    %span style="font-style: italic;" (leave blank if you don't want to change it)
+    %span{style: 'font-style: italic;'} (leave blank if you don't want to change it)
     %br
     = f.password_field :password, :autocomplete => "off"
 
@@ -21,11 +21,11 @@
 
   %div
     = f.label :current_password
-    %span style="font-style: italic;" (we need your current password to confirm your changes)
+    %span{style: 'font-style: italic;'} (we need your current password to confirm your changes)
     %br
     = f.password_field :current_password
 
-  %div= f.submit "Update"
+  %div= f.submit "Update", class: 'btn'
 
 %h3 Cancel my account
 

@@ -9,18 +9,18 @@
           %li=msg
 
     .control-group
-      .control-label= f.label :name
+      = f.label :name, class: 'control-label'
       .controls
-        .text_field= f.text_field :name
+        = f.text_field :name, class: 'text_field'
     .control-group
-      .control-label= f.label :description
+      = f.label :description, class: 'control-label'
       .controls
-        .text_area= f.text_area :description
+        = f.text_area :description, class: 'text_field'
     .control-group
-      .control-label= f.label :brackets
+      = f.label :brackets, class: 'control-label'
       .controls
-        .text_area= f.text_area :brackets
+        = f.text_area :brackets, class: 'text_field'
 
       .form-actions
-      .btn.btn-primary= f.submit nil
-      .btn= link_to t('.cancel', :default => t("helpers.links.cancel")), parameter_sets_path
+      = f.submit nil, class: btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), parameter_sets_path, class: 'btn'
