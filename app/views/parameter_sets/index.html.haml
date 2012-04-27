@@ -1,16 +1,17 @@
-%h1 Listing parameter sets
+%h1 Welcome to your little slice of heav^H^H^H^HFUN!
 
 - @parameter_sets.each do |pset|
   %hr
   .row-fluid
     .span1
       .well{:style => 'background-color: white; border-style: none;'}
-        = link_to(image_tag('up_arrow.png'), vote_up_parameter_set_path(pset), {method: 'put', class: 'btn'}) unless disable_vote?(pset)
-        = link_to(image_tag('down_arrow.png'), vote_down_parameter_set_path(pset), {method: 'put', class: 'btn'}) unless disable_vote?(pset)
+        - if !disable_vote?(pset)
+          = link_to(image_tag('up_arrow.png'), vote_up_parameter_set_path(pset), {method: 'put', class: 'btn'})
+          = link_to(image_tag('down_arrow.png'), vote_down_parameter_set_path(pset), {method: 'put', class: 'btn'})
     .span6
-      .span2
-        %strong= link_to pset.name, pset
-      .span4= pset.description
+      .span3
+        %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
+      .span4{style: 'font-size: 12px'}= pset.description
     .span3
       = pset.user.email
 
