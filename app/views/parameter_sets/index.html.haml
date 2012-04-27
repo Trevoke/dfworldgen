@@ -1,23 +1,17 @@
 %h1 Listing parameter sets
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th
-      %th
-      %th Name
-      %th Description
-      %th Creator
-
-  %tbody
-    - @parameter_sets.each do |parameter_set|
-      %tr
-        %td= button_to 'Like this set', vote_up_parameter_set_path(parameter_set), {method: 'put', class: 'btn'} # unless disable_vote?(parameter_set)
-        %td= button_to 'Ugh!', vote_down_parameter_set_path(parameter_set), {method: 'put', class: 'btn'} #unless disable_vote?(parameter_set)
-        %td= link_to parameter_set.name, parameter_set
-        %td= parameter_set.description
-        %td= parameter_set.user.email
-
-%br
+- @parameter_sets.each do |pset|
+  %hr
+  .row-fluid
+    .span1
+      .well{:style => 'background-color: white; border-style: none;'}
+        = link_to(image_tag('up_arrow.png'), vote_up_parameter_set_path(pset), {method: 'put', class: 'btn'}) unless disable_vote?(pset)
+        = link_to(image_tag('down_arrow.png'), vote_down_parameter_set_path(pset), {method: 'put', class: 'btn'}) unless disable_vote?(pset)
+    .span6
+      .span2
+        %strong= link_to pset.name, pset
+      .span4= pset.description
+    .span3
+      = pset.user.email
 
 = link_to t('.new', default: t('helpers.links.new')), new_parameter_set_path, class: 'btn btn-primary'
