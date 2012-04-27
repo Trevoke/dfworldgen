@@ -1,4 +1,6 @@
-%h1 Welcome to your little slice of heav^H^H^H^HFUN!
+.row
+  %h1.span9 Welcome to your little slice of heav^H^H^H^HFUN!
+  .span3.offset9= link_to 'Create a new Parameter Set', new_parameter_set_path, class: 'btn'
 
 - @parameter_sets.each do |pset|
   %hr
@@ -8,12 +10,12 @@
         - if !disable_vote?(pset)
           .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
           .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
+    .span2
+      .well{:style => 'background-color: transparent; border-style: none;'}
+        = image_for pset
     .span6
       .span3
         %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
       .span4{style: 'font-size: 12px'}= pset.description
     .span3
       = pset.user.email
-
-%hr
-= link_to t('.new', default: t('helpers.links.new')), new_parameter_set_path, class: 'btn btn-primary'

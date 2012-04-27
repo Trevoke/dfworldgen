@@ -38,12 +38,21 @@ describe ParameterSetsController do
       flash[:alert].should match "You're not allowed to edit this!"
     end
 
-    it 'should create parameter set' do
+    it 'should create parameter set with an image' do
+      Image.stubs(:upload).returns('XjfHu')
       expect {
         post :create, parameter_set: @parameter_set.attributes
       }.to change(ParameterSet, :count).by(1)
 
       response.should redirect_to parameter_set_path(assigns(:parameter_set))
+    end
+
+    it 'should create a parameter set without an image' do
+      expect {
+        post :create, parameter_set: {name: 'Booya',
+                                      description: 'Yaboo',
+                                      brackets: '[haha][sksk]'}
+      }.to change(ParameterSet, :count).by(1)
     end
 
     it 'should update parameter set' do

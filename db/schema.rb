@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414012557) do
+ActiveRecord::Schema.define(:version => 20120427164215) do
 
   create_table "parameter_sets", :force => true do |t|
     t.string  "name"
     t.text    "description"
     t.text    "brackets"
     t.integer "user_id"
+    t.string  "image"
   end
 
   create_table "users", :force => true do |t|

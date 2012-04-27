@@ -16,6 +16,7 @@ FactoryGirl.define do
     name 'Necro towers'
     brackets "[bracket1]\n[bracket2]"
     description 'Very evil map'
+    image 'HxuJf'
   end
 
 end

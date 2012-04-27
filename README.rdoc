@@ -2,3 +2,7 @@ Dwarf Fortress World Generation Seed Repository
 ===============================================
 
 That title is a mouthful.
+
+Third-party:
+
+* imgur - so we need an API key. It is stored in ENV['IMGUR'].

@@ -8,19 +8,29 @@
         -@parameter_set.errors.full_messages.each do |msg|
           %li=msg
 
-    .control-group
-      = f.label :name, class: 'control-label'
-      .controls
-        = f.text_field :name, class: 'text_field'
-    .control-group
-      = f.label :description, class: 'control-label'
-      .controls
-        = f.text_area :description, class: 'text_field'
-    .control-group
-      = f.label :brackets, class: 'control-label'
-      .controls
-        = f.text_area :brackets, class: 'text_field'
+    .row
+      .span3
+        .control-group
+          = f.label :name, class: 'control-label'
+          .controls
+            = f.text_field :name, class: 'text_field'
+      .span6
+        .control-group
+          = f.label :image, class: 'control-label'
+          .controls
+            = f.file_field :image, class: 'file_field'
+    .row
+      .span3
+        .control-group
+          = f.label :description, class: 'control-label'
+          .controls
+            = f.text_area :description, class: 'text_field'
+      .span6
+        .control-group
+          = f.label :brackets, class: 'control-label'
+          .controls
+            = f.text_area :brackets, class: 'text_field'
 
-      .form-actions
+    .form-actions
       = f.submit nil, class: 'btn btn-primary'
       = link_to t('.cancel', :default => t("helpers.links.cancel")), parameter_sets_path, class: 'btn'

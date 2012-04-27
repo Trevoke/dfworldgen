@@ -2,15 +2,19 @@
 
 This set was created by #{@parameter_set.user.email}
 
-%p
-  %b Name:
-  = @parameter_set.name
-%p
-  %b Description:
-  = @parameter_set.description
-%p
-  %b Brackets:
-  = simple_format @parameter_set.brackets
+.row
+  .span3
+    %b Name:
+    = @parameter_set.name
+    %p
+    %b Description:
+    = @parameter_set.description
+  .span3
+    .well{:style => 'background-color: transparent; border-style: none;'}
+      = image_for @parameter_set
+  .span6
+    %b Brackets:
+    = simple_format @parameter_set.brackets
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path, class: 'btn'

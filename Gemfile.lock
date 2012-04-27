@@ -49,6 +49,8 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     commonjs (0.2.5)
+    crack (0.3.1)
+    curb (0.8.0)
     daemons (1.1.8)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
@@ -83,6 +85,9 @@ GEM
     highline (1.6.11)
     hike (1.2.1)
     i18n (0.6.0)
+    imgur (0.2.0)
+      crack (>= 0.1.4)
+      curb (>= 0.5.4.0)
     jasminerice (0.0.8)
       haml
     journey (1.0.3)
@@ -216,6 +221,7 @@ DEPENDENCIES
   guard-jasmine
   haml
   heroku
+  imgur
   jasminerice
   jquery-rails
   mocha

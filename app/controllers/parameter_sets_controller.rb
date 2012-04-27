@@ -26,8 +26,11 @@ class ParameterSetsController < ApplicationController
   end
 
   def create
+    image_hash = Image.upload params[:parameter_set].delete(:image)
+
     @parameter_set = ParameterSet.new(params[:parameter_set])
     @parameter_set.user = current_user
+    @parameter_set.image = image_hash
     if @parameter_set.save
       redirect_to @parameter_set, notice: 'Parameter Set was successfully created.'
     else
@@ -63,4 +66,7 @@ class ParameterSetsController < ApplicationController
     current_user.vote_against pset
     render nothing: true
   end
+
+  private
+
 end

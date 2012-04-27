@@ -14,6 +14,7 @@ gem 'devise' # https://github.com/plataformatec/devise
 gem 'haml'
 gem 'rails-asset-jqueryui', '~> 0.0.3'
 gem 'bootstrap-sass', '~> 2.0.1'
+gem 'imgur'
 
 group :production do
   gem 'pg'
