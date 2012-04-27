@@ -4,10 +4,9 @@
   %hr
   .row-fluid
     .span1
-      .well{:style => 'background-color: white; border-style: none;'}
-        - if !disable_vote?(pset)
-          .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
-          .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
+      - if !disable_vote?(pset)
+        .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
+        .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
     .span6
       .span3
         %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
@@ -15,4 +14,5 @@
     .span3
       = pset.user.email
 
+%hr
 = link_to t('.new', default: t('helpers.links.new')), new_parameter_set_path, class: 'btn btn-primary'
