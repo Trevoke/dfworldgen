@@ -4,12 +4,13 @@ Dfworldgen::Application.routes.draw do
 
   root :to => "parameter_sets#index"
   resources :parameter_sets do
-    member do
-      put :vote_up
-      put :vote_down
-    end
+    #member do
+      #put :vote_up
+      #put :vote_down
+    #end
   end
 
-  #resources :votes
+  put 'vote_up', to: 'parameter_sets#vote_up'
+  put 'vote_down', to: 'parameter_sets#vote_down'
 
 end

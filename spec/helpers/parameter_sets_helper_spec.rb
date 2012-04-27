@@ -4,7 +4,7 @@ describe ParameterSetsHelper do
 
   it "disables voting if no user is logged in" do
     pset = build :parameter_set
-    helper.disable_vote?.should be_true
+    helper.disable_vote?(pset).should be_true
   end
 
   #it "only enables vote if user has not already voted" do

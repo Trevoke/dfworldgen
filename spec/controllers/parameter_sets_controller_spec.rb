@@ -59,14 +59,15 @@ describe ParameterSetsController do
       response.should redirect_to parameter_sets_path
     end
 
-    it 'should be able to vote up a pset' do
-      put :vote_up, id: @parameter_set
-      @user.voted_for?(@parameter_set).should be_true
+    it 'can do an AJAX vote_down on a pset' do
+      xhr :put, :vote_down, id: @parameter_set
+      @user.voted_against?(@parameter_set).should be_true
     end
 
-    it 'should be able to vote down a pset' do
-      put :vote_down, id: @parameter_set
-      @user.voted_against?(@parameter_set).should be_true
+    it 'can do an AJAX vote_up on a pset' do
+      xhr :put, :vote_up, id: @parameter_set
+      @user.voted_for?(@parameter_set).should be_true
+      response.should_not redirect_to :index
     end
 
   end
