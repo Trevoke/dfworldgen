@@ -1,6 +1,30 @@
 %h1 Editing parameter set
 
-= render 'form'
+.form-horizontal
+  =form_for @parameter_set do |f|
+    -if @parameter_set.errors.any?
+      #error_explanation
+      %h2
+        ="#{pluralize(@parameter_set.errors.count, "error")} prohibited this parameter set from being saved:"
+      %ul
+        -@parameter_set.errors.full_messages.each do |msg|
+          %li=msg
+
+    .row
+      .span6
+        .control-group
+          = f.label :name, class: 'control-label'
+          .controls
+            = f.text_field :name, class: 'text_field'
+      .span6
+        .control-group
+          = f.label :description, class: 'control-label'
+          .controls
+            = f.text_area :description, class: 'text_field'
+
+    .form-actions
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), parameter_sets_path, class: 'btn'
 
 = link_to 'Show', @parameter_set
 |

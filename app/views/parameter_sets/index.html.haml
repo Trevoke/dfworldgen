@@ -4,9 +4,10 @@
   %hr
   .row-fluid
     .span1
-      - if !disable_vote?(pset)
-        .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
-        .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
+      .well{:style => 'background-color: transparent; border-style: none;'}
+        - if !disable_vote?(pset)
+          .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
+          .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
     .span6
       .span3
         %strong{style: 'font-size: 16px;'}= link_to pset.name, pset

@@ -27,7 +27,7 @@ class ParameterSetsController < ApplicationController
 
   def create
     @parameter_set = ParameterSet.new(params[:parameter_set])
-
+    @parameter_set.user = current_user
     if @parameter_set.save
       redirect_to @parameter_set, notice: 'Parameter Set was successfully created.'
     else
