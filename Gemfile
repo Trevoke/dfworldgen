@@ -34,7 +34,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'factory_girl_rails'
-  gem 'jasmine-rails'
+  gem 'jasminerice'
+  gem 'guard-jasmine'
 end
 
 group :test do

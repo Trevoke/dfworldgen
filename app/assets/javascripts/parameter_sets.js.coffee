@@ -1,28 +1,16 @@
-voteUp = {
-  setup: ->
-    $('voteup').bind('click', voteUp.vote)
-  ,
-  vote: ->
-    id = $(this).data('id')
-    $.ajax(type: 'PUT',
-            url: '/vote_up',
-            data: {id: id})
-    false
-}
+class @ParameterSet
+  constructor: ->
 
-voteDown = {
   setup: ->
-    $('votedown').bind('click', voteDown.vote)
-  ,
-  vote: ->
-    id = $(this).data('id')
-    $.ajax(type: 'PUT',
-            url: '/vote_down',
-            data: {id: id})
-    false
-}
+    $('.vote a').bind('click', @cast)
 
-$(document).ready( ->
-  voteUp.setup()
-  voteDown.setup()
-)
+  cast: ->
+    id = $(this).data('id')
+    direction = $(this).data('direction')
+    $.ajax type: 'PUT',
+           url: '/vote_' + direction,
+           data: {id: id}
+    false
+
+$(document).ready ->
+  (new ParameterSet).setup()

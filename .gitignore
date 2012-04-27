@@ -19,3 +19,4 @@
 /config/database.yml # nice try!
 
 *.swp # Vim temp files, too!
+.jhw-cache/
