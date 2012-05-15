@@ -1,6 +1,6 @@
 .row
-  %h1.span9 Welcome to your little slice of heav^H^H^H^HFUN!
-  .span3.offset9= link_to 'Create a new Parameter Set', new_parameter_set_path, class: 'btn'
+  %h1.span9 Welcome to hours of FUN (and waiting)!
+  .span3.offset9= link_to 'New Parameter Set', new_parameter_set_path, class: 'btn'
 
 - @parameter_sets.each do |pset|
   %hr
@@ -13,9 +13,11 @@
     .span2
       .well{:style => 'background-color: transparent; border-style: none;'}
         = image_for pset
-    .span6
+    .span3
       .span3
         %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
       .span4{style: 'font-size: 12px'}= pset.description
+    .span3
+      = pset.tag_list.sort.join(', ')
     .span3
       = pset.user.email

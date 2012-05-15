@@ -11,16 +11,22 @@
           %li=msg
 
     .row
-      .span6
+      .span4
         .control-group
           = f.label :name, class: 'control-label'
           .controls
             = f.text_field :name, class: 'text_field'
-      .span6
+      .span4
         .control-group
           = f.label :description, class: 'control-label'
           .controls
             = f.text_area :description, class: 'text_field'
+      .span4
+        .control-group
+          = f.label :tag_list, class: 'control-label'
+          %span{style: 'font-style:italic;'} (comma-separated list)
+          .controls
+            = f.text_field :tag_list, class: 'text_field'
 
     .form-actions
       = f.submit nil, class: 'btn btn-primary'

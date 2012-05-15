@@ -20,3 +20,5 @@
 
 *.swp # Vim temp files, too!
 .jhw-cache/
+
+coverage/

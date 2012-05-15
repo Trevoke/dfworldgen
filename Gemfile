@@ -15,6 +15,7 @@ gem 'haml'
 gem 'rails-asset-jqueryui', '~> 0.0.3'
 gem 'bootstrap-sass', '~> 2.0.1'
 gem 'imgur'
+gem 'acts-as-taggable-on', '~> 2.2.2'
 
 group :production do
   gem 'pg'

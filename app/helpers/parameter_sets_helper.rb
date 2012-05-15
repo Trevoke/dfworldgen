@@ -1,4 +1,5 @@
 module ParameterSetsHelper
+  include ActsAsTaggableOn::TagsHelper
 
   def disable_vote? pset
     return true unless user_signed_in?

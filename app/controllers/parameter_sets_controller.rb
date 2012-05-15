@@ -1,5 +1,6 @@
 class ParameterSetsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :tag_cloud, only: :index
   respond_to :html
 
   def index
@@ -16,7 +17,7 @@ class ParameterSetsController < ApplicationController
     @parameter_set = ParameterSet.new
     respond_with @parameter_set
   end
-
+ 
   def edit
     @parameter_set = ParameterSet.find(params[:id])
     if @parameter_set.user_id != current_user.id
@@ -67,6 +68,8 @@ class ParameterSetsController < ApplicationController
     render nothing: true
   end
 
-  private
+ def tag_cloud
+    @tags = ParameterSet.tag_counts_on(:tags)
+  end
 
 end

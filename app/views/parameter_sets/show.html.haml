@@ -7,8 +7,12 @@ This set was created by #{@parameter_set.user.email}
     %b Name:
     = @parameter_set.name
     %p
-    %b Description:
-    = @parameter_set.description
+      %b Description:
+      = @parameter_set.description
+    %p
+      %b Tags:
+      = @parameter_set.tag_list.sort.join(', ')
+
   .span3
     .well{:style => 'background-color: transparent; border-style: none;'}
       = image_for @parameter_set

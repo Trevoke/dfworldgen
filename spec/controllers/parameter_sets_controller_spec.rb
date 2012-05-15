@@ -18,46 +18,68 @@ describe ParameterSetsController do
       response.should render_template 'new'
     end
 
-    it 'should be able to edit your own param sets' do
-      mine = FactoryGirl.create :parameter_set, {
+    context 'editing' do
+
+      it 'his own param sets' do
+        mine = FactoryGirl.create :parameter_set, {
           :brackets => "ohnoes", :description => "fake",
           :name => "ohno", :user_id => @user.id
-      }
-      get :edit, id: mine
-      response.should render_template 'edit'
-    end
+        }
+        get :edit, id: mine
+        response.should render_template 'edit'
+      end
 
-    it 'should not be able to edit a param set that does not belong to you' do
-      user2 = User.create email: 'test2@email.com'
-      not_mine = FactoryGirl.create :parameter_set, {
+      it 'a param set that does not belong to him' do
+        user2 = User.create email: 'test2@email.com'
+        not_mine = FactoryGirl.create :parameter_set, {
           :brackets => "ohnoes", :description => "fake",
           :name => "ohno", :user_id => user2.id
-      }
-      get :edit, id: not_mine
-      response.should redirect_to parameter_set_path(assigns(:parameter_set))
-      flash[:alert].should match "You're not allowed to edit this!"
+        }
+        get :edit, id: not_mine
+        response.should redirect_to parameter_set_path(assigns(:parameter_set))
+        flash[:alert].should match "You're not allowed to edit this!"
+      end
+
     end
 
-    it 'should create parameter set with an image' do
-      Image.stubs(:upload).returns('XjfHu')
-      expect {
-        post :create, parameter_set: @parameter_set.attributes
-      }.to change(ParameterSet, :count).by(1)
+    context 'creating' do
 
-      response.should redirect_to parameter_set_path(assigns(:parameter_set))
+      it 'a parameter set with an image' do
+        Image.stubs(:upload).returns('XjfHu')
+        expect {
+          post :create, parameter_set: @parameter_set.attributes
+        }.to change(ParameterSet, :count).by(1)
+
+        response.should redirect_to parameter_set_path(assigns(:parameter_set))
+      end
+
+      it 'a parameter set without an image' do
+        expect {
+          post :create, parameter_set: {name: 'Booya',
+            description: 'Yaboo',
+            brackets: '[haha][sksk]'}
+        }.to change(ParameterSet, :count).by(1)
+      end
+
     end
 
-    it 'should create a parameter set without an image' do
-      expect {
-        post :create, parameter_set: {name: 'Booya',
-                                      description: 'Yaboo',
-                                      brackets: '[haha][sksk]'}
-      }.to change(ParameterSet, :count).by(1)
-    end
+    context 'updating' do
 
-    it 'should update parameter set' do
-      put :update, id: @parameter_set, parameter_set: @parameter_set.attributes
-      response.should redirect_to parameter_set_path(assigns(:parameter_set))
+      it 'should update parameter set' do
+        put :update, id: @parameter_set, parameter_set: @parameter_set.attributes
+        response.should redirect_to parameter_set_path(assigns(:parameter_set))
+      end
+
+      it 'can add a list of tags' do
+        mine = FactoryGirl.create :parameter_set, {
+          brackets: "ohnoes", description: "fake",
+          name: "ohno", user_id: @user.id
+        }
+        put :update, id: mine, parameter_set: {tag_list: "vampires, magma"}
+        mine.reload
+        mine.tag_list.should eq %w(vampires magma)
+      end
+
     end
 
     it 'should destroy parameter set' do
