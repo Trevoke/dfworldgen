@@ -9,23 +9,29 @@
           %li=msg
 
     .row
-      .span3
+      .span4
         .control-group
           = f.label :name, class: 'control-label'
           .controls
             = f.text_field :name, class: 'text_field'
-      .span6
+      .span4
         .control-group
           = f.label :image, class: 'control-label'
           .controls
             = f.file_field :image, class: 'file_field'
+      .span4
+        .control-group
+          = f.label :tag_list, class: 'control-label'
+          %span{style: 'font-style:italic;'} Comma-separated list
+          .controls
+            = f.text_field :tag_list, class: 'text_field'
     .row
-      .span3
+      .span4
         .control-group
           = f.label :description, class: 'control-label'
           .controls
             = f.text_area :description, class: 'text_field'
-      .span6
+      .span4
         .control-group
           = f.label :brackets, class: 'control-label'
           .controls
