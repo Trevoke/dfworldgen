@@ -4,7 +4,7 @@ class ParameterSetsController < ApplicationController
   respond_to :html
 
   def index
-    @parameter_sets = ParameterSet.order('created_at DESC')
+    @parameter_sets = ParameterSet.all
     respond_with @parameter_sets
   end
 
