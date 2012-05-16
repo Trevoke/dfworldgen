@@ -2,6 +2,11 @@
 
 This set was created by #{@parameter_set.user.email}
 
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path, class: 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_parameter_set_path(@parameter_set), class: 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), parameter_set_path(@parameter_set), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), class: 'btn btn-danger'
+
 .row
   .span3
     %b Name:
@@ -20,7 +25,3 @@ This set was created by #{@parameter_set.user.email}
     %b Brackets:
     = simple_format @parameter_set.brackets
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), parameter_sets_path, class: 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_parameter_set_path(@parameter_set), class: 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), parameter_set_path(@parameter_set), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), class: 'btn btn-danger'
