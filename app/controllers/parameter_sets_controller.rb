@@ -17,7 +17,7 @@ class ParameterSetsController < ApplicationController
     @parameter_set = ParameterSet.new
     respond_with @parameter_set
   end
- 
+
   def edit
     @parameter_set = ParameterSet.find(params[:id])
     if @parameter_set.user_id != current_user.id
@@ -70,6 +70,11 @@ class ParameterSetsController < ApplicationController
 
  def tag_cloud
     @tags = ParameterSet.tag_counts_on(:tags)
+ end
+
+  def show_tags
+    @parameter_sets = ParameterSet.tagged_with(params[:id])
+    render :index
   end
 
 end
