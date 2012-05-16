@@ -1,6 +1,6 @@
 class ParameterSetsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :tag_cloud, only: :index
+  before_filter :tag_cloud
   respond_to :html
 
   def index
