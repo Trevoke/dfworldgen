@@ -10,9 +10,9 @@ describe ParameterSetsHelper do
   it 'only enables vote if user has not already voted' do
   @user = create(:user)
   sign_in @user
-    pset1 = build :parameter_set
-    pset2 = build :parameter_set
-    @user.vote_for pset1
+    pset1 = FactoryGirl.create :parameter_set
+    pset2 = FactoryGirl.create :parameter_set
+    @user.likes pset1
     helper.disable_vote?(pset1).should be_true
     helper.disable_vote?(pset2).should be_false
   end

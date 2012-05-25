@@ -56,21 +56,9 @@ class ParameterSetsController < ApplicationController
     redirect_to parameter_sets_url
   end
 
-  def vote_up
-    pset = ParameterSet.find params[:id]
-    current_user.vote_for pset
-    render nothing: true
-  end
-
-  def vote_down
-    pset = ParameterSet.find params[:id]
-    current_user.vote_against pset
-    render nothing: true
-  end
-
- def tag_cloud
+  def tag_cloud
     @tags = ParameterSet.tag_counts_on(:tags)
- end
+  end
 
   def show_tags
     @parameter_sets = ParameterSet.tagged_with(params[:id])

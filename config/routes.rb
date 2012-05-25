@@ -7,7 +7,7 @@ Dfworldgen::Application.routes.draw do
 
   get 'parameter_sets/show_tags/:id', to: 'parameter_sets#show_tags'
 
-  put 'vote_up', to: 'parameter_sets#vote_up'
-  put 'vote_down', to: 'parameter_sets#vote_down'
+  put 'vote_up', to: 'users#vote_up'
+  put 'vote_down', to: 'users#vote_down'
 
 end
