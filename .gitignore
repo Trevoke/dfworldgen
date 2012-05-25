@@ -19,6 +19,7 @@
 /config/database.yml # nice try!
 
 *.sw? # Vim temp files, too!
+tags # Tag file for vim
 .jhw-cache/
 
 coverage/
