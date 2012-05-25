@@ -13,9 +13,10 @@ gem 'thumbs_up' # https://github.com/bouchard/thumbs_up # NOT acts_as_votable. R
 gem 'devise' # https://github.com/plataformatec/devise
 gem 'haml'
 gem 'rails-asset-jqueryui', '~> 0.0.3'
-gem 'bootstrap-sass', '~> 2.0.1'
+gem 'bootstrap-sass', '~> 2.0.1' 
 gem 'imgur'
 gem 'acts-as-taggable-on', '~> 2.2.2' #https://github.com/mbleigh/acts-as-taggable-on
+gem 'newrelic_rpm' # https://devcenter.heroku.com/articles/newrelic#addon_installations
 
 group :production do
   gem 'pg'
