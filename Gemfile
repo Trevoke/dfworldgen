@@ -25,6 +25,7 @@ group :production do
 end
 
 group :development do
+  gem 'pry-rails'
   gem 'heroku'
   gem 'capistrano'
 end
