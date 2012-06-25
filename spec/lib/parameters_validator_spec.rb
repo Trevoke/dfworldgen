@@ -123,5 +123,14 @@ describe ParametersValidator do
       @pv.cull_historical_figures?('1').should be_true
     end
   end
+
+  context 'REVEAL ALL HISTORY' do
+    it 'is 0 or 1' do
+      @pv.reveal_all_history?('').should be_false
+      @pv.reveal_all_history?('2').should be_false
+      @pv.reveal_all_history?('0').should be_true
+      @pv.reveal_all_history?('1').should be_true
+    end
+  end
   
 end

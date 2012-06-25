@@ -95,8 +95,6 @@ GEM
     hike (1.2.1)
     i18n (0.6.0)
     imgur (0.2.0)
-      crack (>= 0.1.4)
-      curb (>= 0.5.4.0)
     jasminerice (0.0.8)
       haml
     journey (1.0.3)
@@ -240,6 +238,8 @@ DEPENDENCIES
   bootstrap-sass (~> 2.0.1)
   capistrano
   coffee-rails (~> 3.2.1)
+  crack
+  curb
   devise
   factory_girl
   factory_girl_rails

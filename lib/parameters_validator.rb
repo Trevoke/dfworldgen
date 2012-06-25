@@ -2,9 +2,7 @@ class ParametersValidator #< ActiveModel::Validator
 
 
   def title? string
-    return false if string.nil? || string.empty?
-    return false if string.size > 20
-    true
+    !(string.nil? || string.empty?) && (string.size <= 20)
   end
 
   def dim? string
@@ -20,36 +18,42 @@ class ParametersValidator #< ActiveModel::Validator
   def embark_points? string
     return false if string.nil? || string.empty?
     x = string.to_i
-    x >=0 && x <= 10_000
+    x.between? 0, 10_000
   end
 
   def end_year? string
     return false if string.nil? || string.empty?
     x = string.to_i
-    x >= 2 && x <= 10_000
+    x.between? 2, 10_000
   end
 
   def total_civ_population? string
     return false if string.nil? || string.empty?
     x = string.to_i
-    x >= -1 && x <= 100_000
+    x.between? -1, 100_000
   end
 
   def site_cap? string
     return false if string.nil? || string.empty?
     x = string.to_i
-    x >= -1 && x <= 100_000
+    x.between? -1, 100_000
   end
 
   def beast_end_year? string
     return false if string.nil? || string.empty?
     year, percentage = string.split(':').map { |x| x.to_i }
     return false if year < 2
-    percentage >= -1 && percentage <= 100
+    percentage.between? -1, 100
   end
 
   def cull_historical_figures? string
     return false if string.nil? || string.empty?
     %w(0 1).include? string
   end
+
+  def reveal_all_history? string
+    return false if string.nil? || string.empty?
+    %w(0 1).include? string
+  end
+
 end
