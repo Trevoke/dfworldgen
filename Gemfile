@@ -23,7 +23,7 @@ gem 'newrelic_rpm' # https://devcenter.heroku.com/articles/newrelic#addon_instal
 group :production do
   gem 'pg'
   gem 'mysql2'
-  gem 'thin'
+  gem 'unicorn'
 end
 
 group :development do

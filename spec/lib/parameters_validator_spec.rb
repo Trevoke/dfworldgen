@@ -132,5 +132,25 @@ describe ParametersValidator do
       @pv.reveal_all_history?('1').should be_true
     end
   end
+
+  context 'TERRAIN PARAMETERS' do
+    context 'elevation' do
+      it 'has four parameters' do
+        ['', '3', '4:300', '1:300:401'].each do |x|
+          @pv.elevation?(x).should be_false
+        end
+        @pv.elevation?('1:400:401:401').should be_true
+      end
+
+      it 'has a range between 0 and 400' do
+        
+      end
+
+      it 'has x and y variance between 0 and 3200' do
+
+      end
+
+    end
+  end
   
 end
