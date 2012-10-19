@@ -22,7 +22,6 @@ gem 'newrelic_rpm' # https://devcenter.heroku.com/articles/newrelic#addon_instal
                    # https://newrelic.com/docs/ruby/new-relic-for-ruby
 group :production do
   gem 'pg'
-  gem 'mysql2'
   gem 'unicorn'
 end
 

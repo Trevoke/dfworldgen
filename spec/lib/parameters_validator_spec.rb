@@ -136,18 +136,29 @@ describe ParametersValidator do
   context 'TERRAIN PARAMETERS' do
     context 'elevation' do
       it 'has four parameters' do
-        ['', '3', '4:300', '1:300:401'].each do |x|
+        %w[ 3 4:300 1:300:401].each do |x|
           @pv.elevation?(x).should be_false
         end
         @pv.elevation?('1:400:401:401').should be_true
       end
 
       it 'has a range between 0 and 400' do
-        
+        %w[-1:0:401:401 0:-1:401:401 401:400:401:401 400:401:401:401].each do |params|
+          @pv.elevation?(params).should be_false
+        end
+        %w[0:0:401:401 1:1:401:401 400:400:401:401 350:350:401:401].each do |params|
+          @pv.elevation?(params).should be_true
+        end
+
       end
 
       it 'has x and y variance between 0 and 3200' do
-
+        %w[0:400:-1:3200 0:400:3200:-1 0:400:0:3201 0:400:3201:0].each do |params|
+          @pv.elevation?(params).should be_false
+        end
+        %w[0:400:0:3200 0:400:3200:0 0:400:0:3200 0:400:3200:0].each do |params|
+          @pv.elevation?(params).should be_true
+        end
       end
 
     end

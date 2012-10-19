@@ -1,6 +1,5 @@
 class ParametersValidator #< ActiveModel::Validator
 
-
   def title? string
     !(string.nil? || string.empty?) && (string.size <= 20)
   end
@@ -54,6 +53,16 @@ class ParametersValidator #< ActiveModel::Validator
   def reveal_all_history? string
     return false if string.nil? || string.empty?
     %w(0 1).include? string
+  end
+
+  def elevation? string
+    params = string.split(':').map { |x| x.to_i }
+    return false if params.size != 4
+    return false if params[0] < 0 || params[0] > 400
+    return false if params[1] < 0 || params[1] > 400
+    return false if params[2] < 0 || params[2] > 3200
+    return false if params[3] < 0 || params[3] > 3200
+    true
   end
 
 end
