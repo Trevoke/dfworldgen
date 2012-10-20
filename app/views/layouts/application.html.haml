@@ -11,14 +11,13 @@
 
   .container-fluid
     .row-fluid
-      .span3
-        =render 'layouts/sidebar'
       .span9
         -if alert
           %p.alert.alert-info= alert
         -if notice
           %p.notice= notice
         = yield
-
+      .span3
+        =render 'layouts/sidebar'
     %footer
       %b Feedback is welcome. The app is on #{link_to 'github', 'https://github.com/Trevoke/dfworldgen'} and #{mail_to 'trevoke@gmail.com','emails'} to the developer are welcome.

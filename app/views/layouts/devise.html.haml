@@ -1,4 +1,3 @@
-
 !!!HTML
 
 %head
@@ -12,12 +11,13 @@
 
   .container-fluid
     .row-fluid
-      .span3
+      .span1
       .span9
         -if alert
           %p.alert.alert-info= alert
         -if notice
           %p.notice= notice
         = yield
+      .span2
 
     %footer
