@@ -5,7 +5,7 @@ class ParametersValidator #< ActiveModel::Validator
   end
 
   def dim? string
-    valid_sizes = %w( 17 33 65 129 257 ) 
+    valid_sizes = %w[17 33 65 129 257]
     x, y = string.split(':')
     valid_sizes.include?(x) && valid_sizes.include?(y)
   end
@@ -47,22 +47,76 @@ class ParametersValidator #< ActiveModel::Validator
 
   def cull_historical_figures? string
     return false if string.nil? || string.empty?
-    %w(0 1).include? string
+    %w[0 1].include? string
   end
 
   def reveal_all_history? string
     return false if string.nil? || string.empty?
-    %w(0 1).include? string
+    %w[0 1].include? string
   end
 
   def elevation? string
+    min_max_variance string, 0, 400
+  end
+
+  def rainfall? string
+    min_max_variance string, 0, 100
+  end
+
+  def temperature? string
+    min_max_variance string, -1000, 1000
+  end
+
+  def drainage? string
+    min_max_variance string, 0, 100
+  end
+
+  def volcanism? string
+    min_max_variance string, 0, 100
+  end
+
+  def savagery? string
+    min_max_variance string, 0, 100
+  end
+
+  def elevation_frequency? string
+    true
+  end
+
+  def rain_frequency? string
+    true
+  end
+
+  def drainage_frequency? string
+    true
+  end
+
+  def temperature_frequency? string
+    true
+  end
+
+  def savagery_frequency? string
+    true
+  end
+
+  def volcanism_frequency? string
+    true
+  end
+
+  private
+
+  def min_max_variance string, min, max
     params = string.split(':').map { |x| x.to_i }
     return false if params.size != 4
-    return false if params[0] < 0 || params[0] > 400
-    return false if params[1] < 0 || params[1] > 400
-    return false if params[2] < 0 || params[2] > 3200
-    return false if params[3] < 0 || params[3] > 3200
+    return false unless params[0].between? min, max
+    return false unless params[1].between? params[0], max
+    return false if outside_variance? params[2]
+    return false if outside_variance? params[3]
     true
+  end
+
+  def outside_variance? value
+    !value.between? 0, 3200
   end
 
 end

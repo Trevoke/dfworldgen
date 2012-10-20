@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rspec'
 filepath = File.dirname __FILE__
 require File.join(filepath, '../../lib/parameters_validator.rb')
 
@@ -135,32 +135,83 @@ describe ParametersValidator do
 
   context 'TERRAIN PARAMETERS' do
     context 'elevation' do
-      it 'has four parameters' do
-        %w[ 3 4:300 1:300:401].each do |x|
-          @pv.elevation?(x).should be_false
-        end
-        @pv.elevation?('1:400:401:401').should be_true
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max 'elevation', 0, 400
       end
+    end
 
-      it 'has a range between 0 and 400' do
-        %w[-1:0:401:401 0:-1:401:401 401:400:401:401 400:401:401:401].each do |params|
-          @pv.elevation?(params).should be_false
-        end
-        %w[0:0:401:401 1:1:401:401 400:400:401:401 350:350:401:401].each do |params|
-          @pv.elevation?(params).should be_true
-        end
-
+    context 'rainfall' do
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max 'rainfall', 0, 100
       end
+    end
 
-      it 'has x and y variance between 0 and 3200' do
-        %w[0:400:-1:3200 0:400:3200:-1 0:400:0:3201 0:400:3201:0].each do |params|
-          @pv.elevation?(params).should be_false
-        end
-        %w[0:400:0:3200 0:400:3200:0 0:400:0:3200 0:400:3200:0].each do |params|
-          @pv.elevation?(params).should be_true
-        end
+    context 'temperature' do
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max "temperature", -1000, 1000
       end
+    end
 
+    context 'drainage' do
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max "drainage", 0, 100
+      end
+    end
+
+    context 'volcanism' do
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max "volcanism", 0, 100
+      end
+    end
+
+    context 'savagery' do
+      it 'is a terrain parameter' do
+        is_a_proper_terrain_parameter_with_min_and_max "savagery", 0, 100
+      end
+    end
+
+  end
+
+  context 'FREQUENCY' do
+    #TODO understand http://dwarffortresswiki.org/index.php/DF2012:Advanced_world_generation#Terrain_Mesh_Sizes_and_Weights
+
+    it 'returns true' do
+      @pv.elevation_frequency?('').should be_true
+      @pv.rain_frequency?('').should be_true
+      @pv.drainage_frequency?('').should be_true
+      @pv.temperature_frequency?('').should be_true
+      @pv.savagery_frequency?('').should be_true
+      @pv.volcanism_frequency?('').should be_true
+    end
+
+  end
+
+
+
+  private
+
+  def is_a_proper_terrain_parameter_with_min_and_max method, min, max
+    %w[ 3 4:300 1:300:401].each do |x|
+      @pv.public_send("#{method}?", x).should be_false
+    end
+    @pv.public_send("#{method}?", '1:1:401:401').should be_true
+
+    %W[#{min-1}:0:401:401 0:#{max+1}:401:401 #{max+1}:#{max+1}:401:401 #{max}:#{max+1}:401:401].each do |params|
+      @pv.public_send("#{method}?", params).should be_false
+    end
+
+    %W[#{min}:#{min+1}:401:401 #{min}:#{min}:1000:401 10:#{max}:401:401 #{max}:#{max}:401:401].each do |params|
+      @pv.public_send("#{method}?", params).should be_true
+    end
+
+    @pv.public_send("#{method}?", '1:2:400:400').should be_true
+    @pv.public_send("#{method}?", '2:1:400:400').should be_false
+
+    %W[#{min}:#{max}:-1:3200 #{min}:#{max}:3200:-1 #{min}:#{max}:0:3201 #{min}:#{max}:3201:0].each do |params|
+      @pv.public_send("#{method}?", params).should be_false
+    end
+    %W[#{min}:#{max}:0:3200 #{min}:#{max}:3200:0 #{min}:#{max}:0:3200 #{min}:#{max}:3200:0].each do |params|
+      @pv.public_send("#{method}?", params).should be_true
     end
   end
   

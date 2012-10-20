@@ -34,7 +34,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'simplecov'
-  gem 'mocha'
+  gem 'mocha', require: 'mocha_standalone'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'
