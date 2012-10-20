@@ -5,5 +5,5 @@
   .css4 { font-size: 1.6em; }
 .well.sidebar-nav
   - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-    = link_to tag.name, { :action => :show_tags, :id => tag.name }, class: css_class
+    = link_to tag.name, {action: :show_tags, id: tag.name}, class: css_class
 

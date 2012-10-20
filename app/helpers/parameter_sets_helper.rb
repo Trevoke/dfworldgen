@@ -20,4 +20,7 @@ module ParameterSetsHelper
     imgur_thumbnail_and_link img_hash
   end
 
+  def tag_list_for pset
+    pset.tag_list.sort.join(', ')
+  end
 end

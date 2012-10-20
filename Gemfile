@@ -29,6 +29,8 @@ group :development do
   gem 'pry-rails'
   gem 'heroku'
   gem 'capistrano'
+  gem 'guard-livereload'
+  gem 'yajl-ruby' #Just to make livereload perform better
 end
 
 group :development, :test do

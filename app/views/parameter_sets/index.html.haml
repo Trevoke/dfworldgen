@@ -1,24 +1,22 @@
 .row
   %h1.span9
     &nbsp;Welcome to hours of FUN!
-  .span3= link_to 'New Settings', new_parameter_set_path, class: 'btn'
+  .span3= button_to 'New Settings', new_parameter_set_path, class: 'btn btn-primary', style: 'margin-top: 20px;'
 
 - @parameter_sets.each do |pset|
   %hr
   .row-fluid
     .span1
-      .well{:style => 'background-color: transparent; border-style: none;'}
-        - if !disable_vote?(pset)
-          .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
-          .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
+      - if !disable_vote?(pset)
+        .vote= link_to(image_tag('up_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'up'})
+        .vote= link_to(image_tag('down_arrow.png'), '#', {method: 'put', 'data-id' => pset.id, 'data-direction' => 'down'})
     .span2
-      -#.well{:style => 'background-color: transparent; border-style: none;'}
       = image_for pset
     .span5
       .row
         %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
       .row{style: 'font-size: 12px'}= pset.description
     .span2
-      = pset.tag_list.sort.join(', ')
+      = tag_list_for pset
     .span2
       = pset.user.email
