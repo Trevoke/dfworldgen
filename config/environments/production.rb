@@ -51,6 +51,16 @@ Dfworldgen::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  ActionMailer::Base.smtp_settings = {
+      :user_name => ENV["SENDGRID_USERNAME"],
+      :password => ENV["SENDGRID_PASSWORD"],
+      :domain => "dfworldgen.com",
+      :address => "smtp.sendgrid.net",
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
+
   # Enable threaded mode
   # config.threadsafe!
 

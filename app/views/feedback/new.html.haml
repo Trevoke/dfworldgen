@@ -1,0 +1,16 @@
+%p We appreciate all the feedback! The source code is on #{link_to 'github', 'https://github.com/Trevoke/dfworldgen'}.
+%p Here's too many more hours of FUN!
+%br
+%p
+  .form-horizontal
+    =form_tag feedback_path do
+      =field_set_tag do
+        .control-group
+          =label_tag :feedback, 'Feedback:', class: 'control-label'
+          .controls
+            =text_area_tag :feedback, nil, {rows: 4, placeholder: 'Please enter your feedback here.'}
+
+      .form-actions
+        = submit_tag 'submit', class: 'btn btn-primary'
+        = link_to t('.cancel', default: t("helpers.links.cancel")), parameter_sets_path, class: 'btn'
+

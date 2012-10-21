@@ -56,6 +56,8 @@ class ParameterSetsController < ApplicationController
     redirect_to parameter_sets_url
   end
 
+  private
+
   def tag_cloud
     @tags = ParameterSet.tag_counts_on(:tags)
   end

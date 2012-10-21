@@ -10,4 +10,8 @@ Dfworldgen::Application.routes.draw do
   put 'vote_up', to: 'users#vote_up'
   put 'vote_down', to: 'users#vote_down'
 
+  resource :feedback, controller: :feedback, only: [:new, :create] do
+
+  end
+
 end
