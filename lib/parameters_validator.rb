@@ -103,20 +103,108 @@ class ParametersValidator #< ActiveModel::Validator
     true
   end
 
+  def complete_ocean_edge_min? string
+    x = string.to_i
+    x.between? 0, 4
+  end
+
+  def min_volcanoes? string
+    x = string.to_i
+    x >= 0
+  end
+
+  def mineral_scarcity? string
+    x = string.to_i
+    x.between? 100, 100_000
+  end
+
+  def megabeast_cap? string
+    greater_than_or_equal_to_zero string.to_i
+  end
+
+  def semimegabeast_cap? string
+    greater_than_or_equal_to_zero string.to_i
+  end
+
+  def titan_number? string
+    greater_than_or_equal_to_zero string.to_i
+  end
+
+  def titan_attack_trigger? string
+    population, exp_wealth, created_wealth = string.split(':').map { |x| x.to_i}
+    !(population < 0 || exp_wealth < 0 || created_wealth < 0)
+  end
+
+  def demon_number? string
+    zero_to_one_thousand? string
+  end
+
+  def night_troll_number? string
+    zero_to_one_thousand? string
+  end
+
+  def bogeyman_number? string
+    zero_to_one_thousand? string
+  end
+
+  def vampire_number? string
+    zero_to_one_thousand? string
+  end
+
+  def werebeast_number? string
+    zero_to_one_thousand? string
+  end
+
+  def secret_number? string
+    zero_to_one_thousand? string
+  end
+
+  def regional_interaction_number? string
+    zero_to_one_thousand? string
+  end
+
+  def disturbance_interaction_number? string
+    zero_to_one_thousand? string
+  end
+
+  def evil_cloud_number? string
+    zero_to_one_thousand? string
+  end
+
+  def evil_rain_number? string
+    zero_to_one_thousand? string
+  end
+
+  def good_sq_counts? string
+    true
+  end
+
+  def evil_sq_counts? string
+    true
+  end
+
   private
 
   def min_max_variance string, min, max
     params = string.split(':').map { |x| x.to_i }
     return false if params.size != 4
-    return false unless params[0].between? min, max
-    return false unless params[1].between? params[0], max
+    return false unless params[0].to_i.between? min, max
+    return false unless params[1].to_i.between? params[0], max
     return false if outside_variance? params[2]
     return false if outside_variance? params[3]
     true
   end
 
   def outside_variance? value
-    !value.between? 0, 3200
+    !value.to_i.between? 0, 3200
+  end
+
+  def greater_than_or_equal_to_zero number
+    number >= 0
+  end
+
+  def zero_to_one_thousand? string
+    string.to_i.between? 0, 1000
   end
 
 end

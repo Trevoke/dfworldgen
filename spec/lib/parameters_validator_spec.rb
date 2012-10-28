@@ -21,7 +21,7 @@ describe ParametersValidator do
 
   context 'DIM' do
     it 'has valid sizes of 17,33,65,129,257' do
-      dims = [17,33,65,129,257]
+      dims = [17, 33, 65, 129, 257]
       valid_sizes = []
       invalid_sizes = []
       dims.each do |x|
@@ -36,7 +36,7 @@ describe ParametersValidator do
       end
       invalid_sizes.each do |dim|
         @pv.dim?(dim).should be_false
-      end      
+      end
     end
   end
 
@@ -186,7 +186,136 @@ describe ParametersValidator do
 
   end
 
+  context 'MINIMUM STUFF' do
+    it 'ocean edges are between 0 and 4' do
+      @pv.complete_ocean_edge_min?('-1').should be_false
+      @pv.complete_ocean_edge_min?('5').should be_false
+      @pv.complete_ocean_edge_min?('4').should be_true
+      @pv.complete_ocean_edge_min?('0').should be_true
+    end
 
+    it 'minimum volcanoes are 0 to .. No maximum' do
+      @pv.min_volcanoes?('-1').should be_false
+      @pv.min_volcanoes?('0').should be_true
+      @pv.min_volcanoes?('3000').should be_true #but Armok help us
+    end
+
+    it 'mineral scarcity is 100 to 100_000' do
+      @pv.mineral_scarcity?('99').should be_false
+      @pv.mineral_scarcity?('100').should be_true
+      @pv.mineral_scarcity?('100_000').should be_true
+      @pv.mineral_scarcity?('100_001').should be_false
+    end
+  end
+
+  context 'CREATURES' do
+    it 'has a megabeast_cap >= 0' do
+      @pv.megabeast_cap?('-1').should be_false
+      @pv.megabeast_cap?('0').should be_true
+      @pv.megabeast_cap?('75').should be_true
+      @pv.megabeast_cap?('100_000').should be_true # Oh Armok.
+    end
+
+    it 'has a semimegabeast_cap >= 0' do
+      @pv.semimegabeast_cap?('-1').should be_false
+      @pv.semimegabeast_cap?('0').should be_true
+      @pv.semimegabeast_cap?('75').should be_true
+      @pv.semimegabeast_cap?('100_000').should be_true # Oh Armok.
+    end
+
+    it 'has a titan_number >= 0' do
+      @pv.titan_number?('-1').should be_false
+      @pv.titan_number?('0').should be_true
+      @pv.titan_number?('75').should be_true
+      @pv.titan_number?('100_000').should be_true # Oh Armok.
+    end
+
+    it 'has parameters for titan attacks' do
+      %w[0:0:0 80:0:10000 0:100:1000 100:100:0 100:100:10000].each do |params|
+        @pv.titan_attack_trigger?(params).should be_true
+      end
+      %w[-1:0:0 80:-1:10000 0:100:-1 -1:-1:-1].each do |params|
+        @pv.titan_attack_trigger?(params).should be_false
+      end
+    end
+    
+    it 'has demons' do
+      @pv.demon_number?('-1').should be_false
+      @pv.demon_number?('0').should be_true
+      @pv.demon_number?('1000').should be_true
+      @pv.demon_number?('1001').should be_false
+    end
+
+    it 'has night_trolls' do
+      @pv.night_troll_number?('-1').should be_false
+      @pv.night_troll_number?('0').should be_true
+      @pv.night_troll_number?('1000').should be_true
+      @pv.night_troll_number?('1001').should be_false
+    end
+
+    it 'has bogeymans' do
+      @pv.bogeyman_number?('-1').should be_false
+      @pv.bogeyman_number?('0').should be_true
+      @pv.bogeyman_number?('1000').should be_true
+      @pv.bogeyman_number?('1001').should be_false
+    end
+
+    it 'has vampires' do
+      @pv.vampire_number?('-1').should be_false
+      @pv.vampire_number?('0').should be_true
+      @pv.vampire_number?('1000').should be_true
+      @pv.vampire_number?('1001').should be_false
+    end
+
+    it 'has werebeast' do
+      @pv.werebeast_number?('-1').should be_false
+      @pv.werebeast_number?('0').should be_true
+      @pv.werebeast_number?('1000').should be_true
+      @pv.werebeast_number?('1001').should be_false
+    end
+
+    it 'has secrets' do
+      @pv.secret_number?('-1').should be_false
+      @pv.secret_number?('0').should be_true
+      @pv.secret_number?('1000').should be_true
+      @pv.secret_number?('1001').should be_false
+    end
+
+    it 'has regional interaction' do
+      @pv.regional_interaction_number?('-1').should be_false
+      @pv.regional_interaction_number?('0').should be_true
+      @pv.regional_interaction_number?('1000').should be_true
+      @pv.regional_interaction_number?('1001').should be_false
+    end
+
+    it 'has disturbance_interactions' do
+      @pv.disturbance_interaction_number?('-1').should be_false
+      @pv.disturbance_interaction_number?('0').should be_true
+      @pv.disturbance_interaction_number?('1000').should be_true
+      @pv.disturbance_interaction_number?('1001').should be_false
+    end
+
+    it 'has evil clouds' do
+      @pv.evil_cloud_number?('-1').should be_false
+      @pv.evil_cloud_number?('0').should be_true
+      @pv.evil_cloud_number?('1000').should be_true
+      @pv.evil_cloud_number?('1001').should be_false
+    end
+
+    it 'has evil_rains' do
+      @pv.evil_rain_number?('-1').should be_false
+      @pv.evil_rain_number?('0').should be_true
+      @pv.evil_rain_number?('1000').should be_true
+      @pv.evil_rain_number?('1001').should be_false
+    end
+  end
+
+  context 'DESIRED GOOD/EVIL SQ COUNTS' do
+    it 'is true, I dunno what I\'m doing' do
+      @pv.good_sq_counts?('').should be_true
+      @pv.evil_sq_counts?('').should be_true
+    end
+  end
 
   private
 
@@ -214,5 +343,5 @@ describe ParametersValidator do
       @pv.public_send("#{method}?", params).should be_true
     end
   end
-  
+
 end
