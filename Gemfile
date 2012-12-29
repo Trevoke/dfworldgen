@@ -1,14 +1,13 @@
 source :rubygems
 
 group :assets do
-  gem 'less-rails'
   gem 'libv8', '~> 3.11.8'
   gem 'therubyracer'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
-
+gem 'less-rails'
 gem 'acts-as-taggable-on', '~> 2.2.2' #https://github.com/mbleigh/acts-as-taggable-on
 gem 'acts_as_votable' # https://github.com/ryanto/acts_as_votable
 gem 'devise' # https://github.com/plataformatec/devise
@@ -28,7 +27,6 @@ end
 
 group :development do
   gem 'pry-rails'
-  gem 'heroku'
   gem 'capistrano'
   gem 'guard-livereload'
   gem 'yajl-ruby' #Just to make livereload perform better
