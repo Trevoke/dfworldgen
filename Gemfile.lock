@@ -120,6 +120,7 @@ GEM
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    libv8 (3.11.8.4)
     listen (0.6.0)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -248,6 +249,7 @@ DEPENDENCIES
   jasminerice
   jquery-rails
   less-rails
+  libv8 (~> 3.11.8)
   mocha
   newrelic_rpm
   pg

@@ -2,6 +2,7 @@ source :rubygems
 
 group :assets do
   gem 'less-rails'
+  gem 'libv8', '~> 3.11.8'
   gem 'therubyracer'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
