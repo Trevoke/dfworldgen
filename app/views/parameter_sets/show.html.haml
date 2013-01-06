@@ -7,21 +7,29 @@ This set was created by #{@parameter_set.user.email}
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_parameter_set_path(@parameter_set), class: 'btn'
   = link_to t('.destroy', :default => t("helpers.links.destroy")), parameter_set_path(@parameter_set), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), class: 'btn btn-danger'
 
-.row
-  .span3
-    %b Name:
-    = @parameter_set.name
-    %p
-      %b Description:
-      = @parameter_set.description
-    %p
-      %b Tags:
-      = @parameter_set.tag_list.sort.join(', ')
+.container-fluid
+  .row-fluid
+    .span9
+      %b Name:
+      = @parameter_set.name
+      %p
+        %b Description:
+        = @parameter_set.description
+      %p
+        %b Tags:
+        = @parameter_set.tag_list.sort.join(', ')
 
-  .span3
-    .well{:style => 'background-color: transparent; border-style: none;'}
-      = image_for @parameter_set
-  .span6
-    %b Brackets:
-    = simple_format @parameter_set.brackets
+    .span3
+      %b Screenshot:
+      %p= image_for @parameter_set
+  .row-fluid
+    %button.span3.btn.btn-info{"data-toggle" => "collapse", "data-target" => "#brackets"} Brackets (click to toggle):
+    %button#copy-brackets.span3.btn.btn-info{type: 'button'} Copy brackets to clipboard
+    #brackets.span9.collapse= simple_format @parameter_set.brackets
 
+  %input#js-brackets{type: 'hidden', value: "#{js_brackets(@parameter_set.brackets).to_json}"}
+
+:javascript
+  $('#copy-brackets').zclip({
+    copy: JSON.parse($('#js-brackets').val()).join('\n')
+  });

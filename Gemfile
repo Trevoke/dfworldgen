@@ -7,6 +7,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'rails', '3.2.9'
 gem 'less-rails'
 gem 'acts-as-taggable-on', '~> 2.2.2' #https://github.com/mbleigh/acts-as-taggable-on
 gem 'acts_as_votable' # https://github.com/ryanto/acts_as_votable
@@ -14,12 +15,11 @@ gem 'devise' # https://github.com/plataformatec/devise
 gem 'haml'
 gem 'imgur'
 gem 'jquery-rails'
+gem 'zclip-rails'
 gem 'newrelic_rpm' # https://devcenter.heroku.com/articles/newrelic#addon_installations
                                       # https://newrelic.com/docs/ruby/new-relic-for-ruby
-gem 'rails', '3.2.9'
 gem 'twitter-bootstrap-rails'
-                                      #gem 'crack' # should be auto-required, should it not?
-                      #gem 'curb' # should be auto-required, should it not?
+
 group :production do
   gem 'pg'
   gem 'unicorn'
@@ -40,6 +40,7 @@ group :development, :test do
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'jasminerice'
+  gem 'rb-fsevent'
   gem 'guard-jasmine'
 end
 

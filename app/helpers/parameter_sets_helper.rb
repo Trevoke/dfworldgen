@@ -23,4 +23,8 @@ module ParameterSetsHelper
   def tag_list_for pset
     pset.tag_list.sort.join(', ')
   end
+
+  def js_brackets brackets
+    brackets.split("\n").map { |x| x.strip }
+  end
 end

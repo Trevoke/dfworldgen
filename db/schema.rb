@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528233544) do
+ActiveRecord::Schema.define(:version => 20130106171057) do
+
+  create_table "embarks", :force => true do |t|
+    t.string   "description"
+    t.string   "screenshot"
+    t.integer  "parameter_set_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "parameter_sets", :force => true do |t|
     t.string  "name"

@@ -163,6 +163,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (10.0.3)
+    rb-fsevent (0.9.3)
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
@@ -214,6 +215,9 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     yajl-ruby (1.1.0)
+    zclip-rails (0.0.1)
+      jquery-rails (>= 1.0.17)
+      railties (~> 3.1)
 
 PLATFORMS
   ruby
@@ -239,6 +243,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 3.2.9)
+  rb-fsevent
   rspec
   rspec-rails
   simplecov
@@ -248,3 +253,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   yajl-ruby
+  zclip-rails

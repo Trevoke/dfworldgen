@@ -9,15 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap_and_overrides
  *= require_tree .
 */
 
-ul.hmenu {
-    list-style: none;
-    margin: 0 0 2em;
-    padding: 0;
-}
-
-ul.hmenu li {
-    display: inline;
-}

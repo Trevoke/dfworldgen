@@ -1,7 +1,8 @@
-.row
-  %h1.span9
-    &nbsp;Welcome to hours of FUN!
-  .span3= button_to 'New Settings', new_parameter_set_path, class: 'btn btn-primary', style: 'margin-top: 20px;'
+.row-fluid
+  .page-header
+    %h2.span11
+      Grab some ale, grab a world, and have fun.
+    .span1= button_to 'New Settings', new_parameter_set_path, class: 'btn btn-primary', form_class: 'small_form'
 
 - @parameter_sets.each do |pset|
   %hr
@@ -14,8 +15,9 @@
       = image_for pset
     .span5
       .row
-        %strong{style: 'font-size: 16px;'}= link_to pset.name, pset
-      .row{style: 'font-size: 12px'}= pset.description
+        .pset_name= link_to pset.name, pset
+      .row
+        .pset_description= pset.description
     .span2
       = tag_list_for pset
     .span2
