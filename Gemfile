@@ -7,7 +7,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 gem 'less-rails'
 gem 'acts-as-taggable-on', '~> 2.2.2' #https://github.com/mbleigh/acts-as-taggable-on
 gem 'acts_as_votable' # https://github.com/ryanto/acts_as_votable
