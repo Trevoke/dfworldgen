@@ -1,8 +1,13 @@
 Dwarf Fortress World Generation Seed Repository
-===============================================
+------
 
 That title is a mouthful.
 
 Third-party:
 
 * imgur - so we need an API key. It is stored in ENV['IMGUR'].
+
+What to know basically:
+
+Each seed can have a description, the actual seed, people can vote on it, and multiple embark points.
+An embark point can have a screenshot, coordinates(?), a description, people can vote on it.
