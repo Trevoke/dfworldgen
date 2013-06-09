@@ -2,7 +2,7 @@
   .page-header
     %h2.span11
       Grab some ale, grab a world, and have fun.
-    .span1= button_to 'New Settings', new_parameter_set_path, class: 'btn btn-primary', form_class: 'small_form'
+    .span1= link_to 'New Settings', new_parameter_set_path, class: 'btn btn-primary', form_class: 'small_form'
 
 - @parameter_sets.each do |pset|
   %hr
